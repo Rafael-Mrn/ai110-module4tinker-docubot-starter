@@ -15,6 +15,10 @@ Experiment with:
 import os
 from google import genai
 
+# Single source of truth for the refusal wording, shared with DocuBot so
+# retrieval-only and RAG modes speak with one voice.
+from docubot import REFUSAL_MESSAGE
+
 # Central place to update the model name if needed.
 # You can swap this for a different Gemini model in the future.
 GEMINI_MODEL_NAME = "gemini-flash-lite-latest"
@@ -78,7 +82,7 @@ class GeminiClient:
         """
 
         if not snippets:
-            return "I do not know based on the docs I have."
+            return REFUSAL_MESSAGE
 
         context_blocks = []
         for filename, text in snippets:
@@ -108,7 +112,7 @@ Rules:
 - Use only the information in the snippets. Do not invent new functions,
   endpoints, or configuration values.
 - If the snippets are not enough to answer confidently, reply exactly:
-  "I do not know based on the docs I have."
+  "{REFUSAL_MESSAGE}"
 - When you do answer, briefly mention which files you relied on.
 """
 
