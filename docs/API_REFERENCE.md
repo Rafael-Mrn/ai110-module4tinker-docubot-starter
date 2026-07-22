@@ -6,7 +6,7 @@ This document lists the main API endpoints available in the sample application. 
 
     ```plaintext
     /api
-    ````
+    ```
 
 ## Authentication Endpoints
 
@@ -21,7 +21,7 @@ Request Body:
     "username": "example",
     "password": "secret"
     }
-    ````
+    ```
 
 Successful Response:
 
